@@ -9,13 +9,15 @@ import (
 	"github.com/tdewolff/minify/css"
 	"github.com/tdewolff/minify/js"
 )
+import "regexp"
 
 //export MinifyJS
-func MinifyJS(jsStringC *C.char) *C.char {
+func MinifyJS(jsStringC *C.char) *C.char { //\/\*[\s\S]*?\*\/*$
 
 	jsString := C.GoString(jsStringC)
 	m := minify.New()
 	m.AddFunc("application/javascript", js.Minify)
+	m.AddFuncRegexp(regexp.MustCompile("\\/\\*[\\s\\S]*?\\*\\/*$"), js.Minify)
 	var buf bytes.Buffer
 	jsReader := strings.NewReader(jsString)
 	if err := m.Minify("application/javascript", &buf, jsReader); err != nil {
