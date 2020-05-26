@@ -1,5 +1,5 @@
 # php-go-minifier
-CSS/JS minifier through PHP FFI on Go/C&nbsp;
+CSS/JS minifier through PHP FFI on Go/C<br/>
 Based on [github.com/tdewolff/minify](https://github.com/tdewolff/minify)
 ## Install
 ```console
