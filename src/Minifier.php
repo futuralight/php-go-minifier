@@ -1,18 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CompliedMinifier;
 
 use FFI;
 
 class Minifier
 {
-    protected $ffi;
+    private FFI $ffi;
 
-    function __construct()
+    public function __construct()
     {
         $this->ffi = FFI::cdef(
-            "
-            char* MinifyJS(char* p0);
+            "char* MinifyJS(char* p0);
             char* MinifyCSS(char* p0);",
             __DIR__ . "/bin/minifier.so"
         );
