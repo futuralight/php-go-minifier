@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CompliedMinifier;
 
+use Exception;
 use FFI;
 
 class Minifier
@@ -23,11 +24,22 @@ class Minifier
 
     public function minifyCSS(string $css): string
     {
-        return FFI::string($this->ffi->MinifyCSS($css));
+        $minifiedCss = FFI::string($this->ffi->MinifyCSS($css));
+        $this->throwExceptionOnError($minifiedCss);
+        return $minifiedCss;
     }
 
     public function minifyJS(string $js): string
     {
-        return FFI::string($this->ffi->MinifyJS($js));
+        $minifiedJs = FFI::string($this->ffi->MinifyJS($js));
+        $this->throwExceptionOnError($minifiedJs);
+        return $minifiedJs;
+    }
+
+    private function throwExceptionOnError(string &$output): void
+    {
+        if ($output === self::ERROR_VALUE) {
+            throw new Exception('Binary file error');
+        }
     }
 }
