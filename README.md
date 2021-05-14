@@ -14,7 +14,6 @@ make
 ```php
 use CompliedMinifier\Minifier;
 
-
 $minifier = new Minifier();
 $css = $minifier->minifyCSS($content);
 $js = $minifier->minifyJS($content);

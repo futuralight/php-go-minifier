@@ -25,7 +25,7 @@ func MinifyJS(jsStringC *C.char) *C.char { //\/\*[\s\S]*?\*\/*$
 	var buf bytes.Buffer
 	err := m.Minify("application/javascript", &buf, strings.NewReader(jsString))
 	if err != nil {
-		C.CString(errorValue)
+		return C.CString(errorValue)
 	}
 	return C.CString(buf.String())
 }
@@ -39,7 +39,7 @@ func MinifyCSS(cssStringC *C.char) *C.char {
 	cssReader := strings.NewReader(cssString)
 	err := m.Minify("text/css", &buf, cssReader)
 	if err != nil {
-		C.CString(errorValue)
+		return C.CString(errorValue)
 	}
 	return C.CString(buf.String())
 }
