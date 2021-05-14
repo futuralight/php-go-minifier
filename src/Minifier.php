@@ -17,18 +17,14 @@ class Minifier
             __DIR__ . "/bin/minifier.so"
         );
     }
-    
-    public function minifyCSS($content)
-    {
-        $minified_css = $this->ffi->MinifyCSS($content);
 
-        return FFI::string($minified_css);
+    public function minifyCSS($css)
+    {
+        return FFI::string($this->ffi->MinifyCSS($css));
     }
 
-    public function minifyJS($content)
+    public function minifyJS($js)
     {
-        $minified_js = $this->ffi->MinifyJS($content);
-
-        return FFI::string($minified_js);
+        return FFI::string($this->ffi->MinifyJS($js));
     }
 }
