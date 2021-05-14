@@ -2,14 +2,15 @@
 
 namespace CompliedMinifier;
 
+use FFI;
+
 class Minifier
 {
-
     protected $ffi;
 
     function __construct()
     {
-        $this->ffi = \FFI::cdef(
+        $this->ffi = FFI::cdef(
             "
             char* MinifyJS(char* p0);
             char* MinifyCSS(char* p0);",
@@ -21,13 +22,13 @@ class Minifier
     {
         $minified_css = $this->ffi->MinifyCSS($content);
 
-        return \FFI::string($minified_css);
+        return FFI::string($minified_css);
     }
 
     public function minifyJS($content)
     {
         $minified_js = $this->ffi->MinifyJS($content);
 
-        return \FFI::string($minified_js);
+        return FFI::string($minified_js);
     }
 }

@@ -68,10 +68,8 @@ typedef struct { void *data; GoInt len; GoInt cap; } GoSlice;
 extern "C" {
 #endif
 
-
-extern char* MinifyJS(char* p0);
-
-extern char* MinifyCSS(char* p0);
+extern char* MinifyJS(char* jsStringC);
+extern char* MinifyCSS(char* cssStringC);
 
 #ifdef __cplusplus
 }

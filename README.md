@@ -7,7 +7,8 @@ composer require futuralight/compiled-minifier
 ```
 ## Build
 ```console
-go build -o minifier.so -buildmode=c-shared main.go
+cd src/go
+make
 ```
 ## Usage
 ```php
