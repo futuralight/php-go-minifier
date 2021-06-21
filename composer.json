@@ -2,16 +2,14 @@
     "name": "futuralight/compiled-minifier",
     "description": "CSS/JS minifier through PHP FFI Go/C",
     "type": "library",
-    "minimum-stability": "dev", 
+    "minimum-stability": "dev",
     "require": {
-        "php": "^7.4.0"
+        "php": "^7.4|^8.0"
     },
-    "authors": [
-        {
-            "name": "futuralight",
-            "email": "futuralight@outlook.com"
-        }
-    ],
+    "authors": [{
+        "name": "futuralight",
+        "email": "futuralight@outlook.com"
+    }],
     "autoload": {
         "psr-4": {
             "CompliedMinifier\\": "src/"

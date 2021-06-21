@@ -13,7 +13,6 @@ import "regexp"
 
 //export MinifyJS
 func MinifyJS(jsStringC *C.char) *C.char { //\/\*[\s\S]*?\*\/*$
-
 	jsString := C.GoString(jsStringC)
 	m := minify.New()
 	m.AddFunc("application/javascript", js.Minify)
@@ -24,13 +23,11 @@ func MinifyJS(jsStringC *C.char) *C.char { //\/\*[\s\S]*?\*\/*$
 		panic(err)
 	}
 	s := buf.String()
-
 	return C.CString(s)
 }
 
 //export MinifyCSS
 func MinifyCSS(cssStringC *C.char) *C.char {
-
 	cssString := C.GoString(cssStringC)
 	m := minify.New()
 	m.AddFunc("text/css", css.Minify)
@@ -40,10 +37,8 @@ func MinifyCSS(cssStringC *C.char) *C.char {
 		panic(err)
 	}
 	s := buf.String()
-
 	return C.CString(s)
 }
 
 func main() {
-
 }

@@ -4,7 +4,6 @@ namespace CompliedMinifier;
 
 class Minifier
 {
-
     protected $ffi;
 
     function __construct()
@@ -20,14 +19,12 @@ class Minifier
     public function minifyCSS($content)
     {
         $minified_css = $this->ffi->MinifyCSS($content);
-
         return \FFI::string($minified_css);
     }
 
     public function minifyJS($content)
     {
         $minified_js = $this->ffi->MinifyJS($content);
-
         return \FFI::string($minified_js);
     }
 }
