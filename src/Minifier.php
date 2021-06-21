@@ -1,30 +1,45 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CompliedMinifier;
+
+use Exception;
+use FFI;
 
 class Minifier
 {
-    protected $ffi;
+    private const ERROR_VALUE = 'ERRORVALUE:0';
 
-    function __construct()
+    private FFI $ffi;
+
+    public function __construct()
     {
-        $this->ffi = \FFI::cdef(
-            "
-            char* MinifyJS(char* p0);
+        $this->ffi = FFI::cdef(
+            "char* MinifyJS(char* p0);
             char* MinifyCSS(char* p0);",
             __DIR__ . "/bin/minifier.so"
         );
     }
-    
-    public function minifyCSS($content)
+
+    public function minifyCSS(string $css): string
     {
-        $minified_css = $this->ffi->MinifyCSS($content);
-        return \FFI::string($minified_css);
+        $minifiedCss = FFI::string($this->ffi->MinifyCSS($css));
+        $this->throwExceptionOnError($minifiedCss);
+        return $minifiedCss;
     }
 
-    public function minifyJS($content)
+    public function minifyJS(string $js): string
     {
-        $minified_js = $this->ffi->MinifyJS($content);
-        return \FFI::string($minified_js);
+        $minifiedJs = FFI::string($this->ffi->MinifyJS($js));
+        $this->throwExceptionOnError($minifiedJs);
+        return $minifiedJs;
+    }
+
+    private function throwExceptionOnError(string &$output): void
+    {
+        if ($output === self::ERROR_VALUE) {
+            throw new Exception('Binary file error');
+        }
     }
 }
