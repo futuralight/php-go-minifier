@@ -22,6 +22,12 @@ class Minifier
         );
     }
 
+    /**
+     * Minifies CSS code
+     *
+     * @param  string $css
+     * @return string
+     */
     public function minifyCSS(string $css): string
     {
         $minifiedCss = FFI::string($this->ffi->MinifyCSS($css));
@@ -29,6 +35,12 @@ class Minifier
         return $minifiedCss;
     }
 
+    /**
+     * Minifies JS code
+     *
+     * @param  string $js
+     * @return string
+     */
     public function minifyJS(string $js): string
     {
         $minifiedJs = FFI::string($this->ffi->MinifyJS($js));
