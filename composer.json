@@ -2,7 +2,7 @@
     "name": "futuralight/compiled-minifier",
     "description": "CSS/JS minifier through PHP FFI Go/C",
     "type": "library",
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "php": "^7.4|^8.0"
     },
