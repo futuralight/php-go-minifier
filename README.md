@@ -3,8 +3,8 @@ CSS/JS minifier through PHP FFI and cgo<br/>
 Based on [github.com/tdewolff/minify](https://github.com/tdewolff/minify)
 ## Install
 ```console
-composer require futuralight/compiled-minifier
-```
+composer require futuralight/compiled-minifier dev-master
+``` 
 ## Build
 ```console
 cd src/go
